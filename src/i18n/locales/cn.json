@@ -104,7 +104,14 @@
     "login-singup": "登录/注册",
     "404": "404 页面",
     "faq": "常见问题解答",
-    "links": "短链"
+    "links": "短链",
+    "settings": "设置",
+    "payment-methods": "支付方式",
+    "signup": "注册",
+    "recover-password": "重置密码",
+    "recover-password-email": "重置密码邮箱",
+    "users": "用户",
+    "projects": "项目"
   },
   "messages": {
     "all": "查看所有消息",

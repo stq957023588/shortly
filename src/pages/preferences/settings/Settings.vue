@@ -3,7 +3,7 @@
     <p class="font-bold w-[200px]">Name</p>
     <div class="flex-1">
       <div class="max-w-[748px]">
-        {{ store.userName }}
+        {{ currentUserStore.info.fullname }}
       </div>
     </div>
     <VaButton :style="buttonStyles" class="w-fit h-fit" preset="primary" @click="emits('openNameModal')">
@@ -15,7 +15,7 @@
     <p class="font-bold w-[200px]">Email</p>
     <div class="flex-1">
       <div class="max-w-[748px]">
-        {{ store.email }}
+        {{ currentUserStore.info.email }}
       </div>
     </div>
   </div>
@@ -55,21 +55,20 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'
-
 import { useToast } from 'vuestic-ui'
-
-import { useUserStore } from '../../../stores/user-store'
-
+import { useCurrentUserStore } from '@/stores/currentUser'
 import { buttonStyles } from '../styles'
 
-const store = useUserStore()
+const currentUserStore = useCurrentUserStore()
 
 const { init } = useToast()
 
-const toastMessage = computed(() => (store.is2FAEnabled ? '2FA successfully enabled' : '2FA successfully disabled'))
+const toastMessage = computed(() =>
+  currentUserStore.info.is2FAEnabled ? '2FA successfully enabled' : '2FA successfully disabled',
+)
 
 const twoFA = computed(() => {
-  if (store.is2FAEnabled) {
+  if (currentUserStore.info.is2FAEnabled) {
     return {
       color: 'danger',
       button: 'Disable 2FA',
@@ -87,7 +86,7 @@ const twoFA = computed(() => {
 })
 
 const toggle2FA = () => {
-  store.toggle2FA()
+  currentUserStore.toggle2FA()
   init({ message: toastMessage.value, color: 'success' })
 }
 

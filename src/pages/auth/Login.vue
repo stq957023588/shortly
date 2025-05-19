@@ -49,10 +49,13 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm, useToast } from 'vuestic-ui'
 import { validators } from '../../services/utils'
+import { useCurrentUserStore } from '@/stores/currentUser'
+import { CurrentUser } from '@/types/currentUser'
 
 const { validate } = useForm('form')
 const { push } = useRouter()
 const { init } = useToast()
+const currentUserStore = useCurrentUserStore()
 
 const formData = reactive({
   email: '',
@@ -61,9 +64,26 @@ const formData = reactive({
 })
 
 const submit = () => {
-  if (validate()) {
-    init({ message: "You've successfully logged in", color: 'success' })
-    push({ name: 'dashboard' })
+  if (!validate()) {
+    return
   }
+  // TODO 调用后端登录接口
+
+  const token = 'ABC'
+
+  const currentUser: CurrentUser = {
+    id: 1,
+    fullname: 'Admin Sky God',
+    email: '957023588@qq.com',
+    username: 'fool.admin',
+    avatar: '',
+    is2FAEnabled: false,
+  }
+
+  currentUserStore.setToken(token)
+  currentUserStore.setInfo(currentUser)
+
+  init({ message: "You've successfully logged in", color: 'success' })
+  push({ name: 'dashboard' })
 }
 </script>

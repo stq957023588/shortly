@@ -5,6 +5,9 @@ import AppLayout from '../layouts/AppLayout.vue'
 
 import RouteViewComponent from '../layouts/RouterBypass.vue'
 
+import { useCurrentUserStore } from '@/stores/currentUser'
+import { storeToRefs } from 'pinia'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
@@ -100,6 +103,12 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/auth/CheckTheEmail.vue'),
       },
       {
+        path: '/logout',
+        name: 'logout',
+        // 用空组件占位即可，不会真正渲染
+        component: { template: '<div></div>' },
+      },
+      {
         path: '',
         redirect: { name: 'login' },
       },
@@ -126,6 +135,27 @@ const router = createRouter({
     }
   },
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  const userStore = useCurrentUserStore()
+  const { token } = storeToRefs(userStore)
+
+  // 登出逻辑：清除 pinia 并跳转
+  if (to.name === 'logout') {
+    userStore.$reset()
+    next({ name: 'login' })
+    return
+  }
+
+  const isAuthPage = to.name === 'login' || to.name === 'signup'
+
+  if (!token.value && !isAuthPage) {
+    // 若 token 为空且目标不是登录页，重定向
+    return next({ name: 'login' })
+  }
+
+  return next()
 })
 
 export default router

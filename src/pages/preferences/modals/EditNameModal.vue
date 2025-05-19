@@ -10,7 +10,7 @@
   >
     <h1 class="va-h5 mb-4">Reset password</h1>
     <VaForm ref="form" @submit.prevent="submit">
-      <VaInput v-model="Name" class="mb-4" label="Name" placeholder="Name" />
+      <VaInput v-model="name" class="mb-4" label="Name" placeholder="Name" />
       <div class="flex flex-col-reverse md:flex-row md:items-center md:justify-end md:space-x-4">
         <VaButton :style="buttonStyles" preset="secondary" color="secondary" @click="emits('cancel')"> Cancel</VaButton>
         <VaButton :style="buttonStyles" class="mb-4 md:mb-0" type="submit" @click="submit"> Save</VaButton>
@@ -20,25 +20,28 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useUserStore } from '../../../stores/user-store'
+import { useCurrentUserStore } from '@/stores/currentUser'
 
 import { buttonStyles } from '../styles'
 import { useToast } from 'vuestic-ui'
 
-const store = useUserStore()
+const currentUserStore = useCurrentUserStore()
 
 const { init } = useToast()
 
 const emits = defineEmits(['cancel'])
 
-const Name = ref<string>(store.userName)
+const name = ref<string>(currentUserStore.info.fullname)
 
 const submit = () => {
-  if (!Name.value || Name.value === store.userName) {
+  if (!name.value || name.value === currentUserStore.info.fullname) {
     return emits('cancel')
   }
 
-  store.changeUserName(Name.value)
+  const currentUserInfo = { ...currentUserStore.info }
+  currentUserInfo.fullname = name.value
+  currentUserStore.setInfo(currentUserInfo)
+
   init({ message: "You've successfully changed your name", color: 'success' })
   emits('cancel')
 }

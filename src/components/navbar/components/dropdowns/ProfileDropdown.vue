@@ -4,8 +4,8 @@
       <template #anchor>
         <VaButton preset="secondary" color="textPrimary">
           <span class="profile-dropdown__anchor min-w-max">
-            <slot />
-            Sky God
+            <slot></slot>
+            {{ currentUserStore.info.fullname }}
           </span>
         </VaButton>
       </template>
@@ -37,9 +37,12 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useColors } from 'vuestic-ui'
+import { useCurrentUserStore } from '@/stores/currentUser'
 
 const { colors, setHSLAColor } = useColors()
 const hoverColor = computed(() => setHSLAColor(colors.focus, { a: 0.1 }))
+
+const currentUserStore = useCurrentUserStore()
 
 const { t } = useI18n()
 
@@ -84,7 +87,7 @@ withDefaults(
         list: [
           {
             name: 'logout',
-            to: 'login',
+            to: 'logout',
             icon: 'mso-logout',
           },
         ],
