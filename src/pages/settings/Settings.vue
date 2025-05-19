@@ -9,7 +9,7 @@
       <h3 class="h3">General preferences</h3>
       <LanguageSwitcher />
     </div>
-    <VaAlert class="rounded-lg p-4 m-0" closeable color="info">
+    <!-- <VaAlert class="rounded-lg p-4 m-0" closeable color="info">
       <template #icon>
         <VaIcon size="26px" name="mso-notifications_active" />
       </template>
@@ -17,7 +17,7 @@
         <p class="text-regularLarge font-bold">Your notification settings are regrouped and simplified</p>
         <p class="text-regularMedium">Your previous setting choices aren't changed.</p>
       </div>
-    </VaAlert>
+    </VaAlert> -->
     <Notifications />
   </div>
 </template>

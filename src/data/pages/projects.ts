@@ -15,7 +15,7 @@ export type Sorting = {
 
 export const getProjects = async (options: Partial<Sorting> & Pagination) => {
   // const projects: Project[] = await fetch(api.allProjects()).then((r) => r.json())
-  const projects: any[] = projectMockData;
+  const projects: any[] = projectMockData
 
   return {
     data: projectMockData,

@@ -8,7 +8,7 @@ import RouteViewComponent from '../layouts/RouterBypass.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
-    redirect: { name: 'dashboard' },
+    redirect: { name: '404' },
   },
   {
     name: 'admin',
@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'users',
         path: 'users',
         component: () => import('../pages/users/UsersPage.vue'),
-      }, 
+      },
       {
         name: 'links',
         path: 'links',

@@ -75,7 +75,7 @@ withDefaults(
             name: 'settings',
             to: 'settings',
             icon: 'mso-settings',
-          }
+          },
         ],
       },
       {

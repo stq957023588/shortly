@@ -3,11 +3,12 @@ import { User } from '../users/types'
 export type UUID = `${string}-${string}-${string}-${string}-${string}`
 
 export type Project = {
-  id: UUID
+  id: number
   project_name: string
   project_owner: User['id']
-  team: User['id'][]
-  status: 'important' | 'completed' | 'archived' | 'in progress'
+  team: string[]
+  // status: 'important' | 'completed' | 'archived' | 'in progress'
+  status: string
   created_at: string
 }
 

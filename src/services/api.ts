@@ -6,7 +6,7 @@ export default {
   users: ({ page, pageSize }: { page: number; pageSize: number }) =>
     `${apiBaseUrl}/users/?page=${page}&pageSize=${pageSize}`,
   allProjects: () => `${apiBaseUrl}/projects`,
-  project: (id: string) => `${apiBaseUrl}/projects/${id}`,
+  project: (id: number) => `${apiBaseUrl}/projects/${id}`,
   projects: ({ page, pageSize }: { page: number; pageSize: number }) =>
     `${apiBaseUrl}/projects/?page=${page}&pageSize=${pageSize}`,
   avatars: () => `${apiBaseUrl}/avatars`,

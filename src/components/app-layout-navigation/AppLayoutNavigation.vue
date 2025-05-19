@@ -80,15 +80,13 @@ const items = computed(() => {
   return result
 })
 
-
-
 const { getColor } = useColors()
 
 const collapseIconColor = computed(() => getColor('secondary'))
 
 const handleBreadcrumbClick = (item: BreadcrumbNavigationItem) => {
-  console.log(item);
-  
+  console.log(item)
+
   if (!item.hasChildren) {
     router.push(item.to)
   }

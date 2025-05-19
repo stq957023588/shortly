@@ -15,7 +15,10 @@
               <div class="flex flex-col gap-2 w-full">
                 <h3 class="text-lg font-semibold">{{ link.title }}</h3>
                 <div class="text-sm text-gray-600">
-                  <div><strong>Short URL:</strong> <a :href="link.shortUrl" target="_blank" class="text-primary">{{ link.shortUrl }}</a></div>
+                  <div>
+                    <strong>Short URL:</strong>
+                    <a :href="link.shortUrl" target="_blank" class="text-primary">{{ link.shortUrl }}</a>
+                  </div>
                   <div><strong>Original URL:</strong> {{ link.longUrl }}</div>
                 </div>
                 <div class="flex justify-between items-center text-sm text-gray-500 pt-3 border-t mt-3 gap-4">
@@ -66,7 +69,7 @@ const links = ref<LinkItem[]>([
     longUrl: 'https://example.com/page',
     createdAt: '2025-05-16',
     clickCount: 35,
-    tags: ['demo', 'example']
+    tags: ['demo', 'example'],
   },
   {
     id: '2',
@@ -75,8 +78,8 @@ const links = ref<LinkItem[]>([
     longUrl: 'https://vuejs.org',
     createdAt: '2025-05-15',
     clickCount: 120,
-    tags: ['vue', 'docs']
-  }
+    tags: ['vue', 'docs'],
+  },
 ])
 
 const newLink = ref({
@@ -86,11 +89,11 @@ const newLink = ref({
   shortUrl: '',
   createdAt: '',
   clickCount: 0,
-  tags: []
+  tags: [],
 })
 
 const filteredLinks = computed(() => {
-  return links.value.filter(link => link.title.toLowerCase().includes(search.value.toLowerCase()))
+  return links.value.filter((link) => link.title.toLowerCase().includes(search.value.toLowerCase()))
 })
 
 const page = ref(1)
@@ -104,14 +107,17 @@ const sentinel = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver
 
 onMounted(() => {
-  observer = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      loadMore()
-    }
-  }, {
-    root: null,
-    threshold: 1.0
-  })
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        loadMore()
+      }
+    },
+    {
+      root: null,
+      threshold: 1.0,
+    },
+  )
   if (sentinel.value) observer.observe(sentinel.value)
 })
 
@@ -135,7 +141,7 @@ const openCreateDialog = () => {
     shortUrl: '',
     createdAt: new Date().toISOString().slice(0, 10),
     clickCount: 0,
-    tags: []
+    tags: [],
   }
 }
 
@@ -150,7 +156,7 @@ const editLink = (link: LinkItem) => {
 }
 
 const deleteLink = (id: string) => {
-  links.value = links.value.filter(link => link.id !== id)
+  links.value = links.value.filter((link) => link.id !== id)
 }
 </script>
 
