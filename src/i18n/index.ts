@@ -17,6 +17,8 @@ Object.entries(fileNameToLocaleModuleDict)
     messages[localeNameLocaleMessagesTuple[0]] = localeNameLocaleMessagesTuple[1]
   })
 
+// TODO 从后端获取
+
 export default createI18n({
   legacy: false,
   locale: 'cn',

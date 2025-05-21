@@ -7,6 +7,9 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useColors } from 'vuestic-ui'
+import { useThemeStore } from '@/stores/theme-store'
+
+const themeStore = useThemeStore()
 
 const { applyPreset, currentPresetName } = useColors()
 
@@ -15,9 +18,12 @@ const theme = computed({
     return currentPresetName.value
   },
   set(value) {
+    themeStore.setValue(value)
     applyPreset(value)
   },
 })
+
+console.log(useThemeStore().value)
 
 const { t } = useI18n()
 

@@ -94,7 +94,7 @@ export const doughnutConfig = {
     },
   },
   maintainAspectRatio: false,
-  animation: true,
+  animation: false,
 }
 
 export const chartTypesMap = {

@@ -2,6 +2,16 @@
   <RouterView />
 </template>
 
+<script setup lang="ts">
+import { useThemeStore } from '@/stores/theme-store'
+import { useColors } from 'vuestic-ui'
+
+const themeStore = useThemeStore()
+const { applyPreset } = useColors()
+
+applyPreset(themeStore.value)
+</script>
+
 <style lang="scss">
 #app {
   font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;

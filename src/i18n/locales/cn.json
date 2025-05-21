@@ -188,6 +188,10 @@
   "search": {
     "placeholder": "搜索..."
   },
+  "buttonSelect": {
+    "dark": "黑夜模式",
+    "light": "明亮模式"
+  },
   "vuestic": {
     "search": "搜索",
     "noOptions": "未找到项目",

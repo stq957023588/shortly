@@ -68,7 +68,6 @@ export default {
     //     icon: 'quiz',
     //   },
     // },
-
     {
       name: 'preferences',
       displayName: 'menu.preferences',
