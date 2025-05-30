@@ -1,4 +1,12 @@
 {
+  "page": {
+    "links": {
+      "addButton": "添加",
+      "shortUrl": "短链",
+      "originUrl": "原始链接",
+      "tags": "标签"
+    }
+  },
   "auth": {
     "agree": "我同意",
     "createAccount": "创建账号",

@@ -2,8 +2,8 @@
   <div>
     <div class="px-4 md:px-24">
       <div class="flex justify-between items-center py-4">
-        <h1 class="text-2xl font-bold">Links</h1>
-        <VaButton color="primary" @click="openCreateDialog">Add Link</VaButton>
+        <h1 class="text-2xl font-bold">{{ t('menu.links') }}</h1>
+        <VaButton color="primary" @click="openCreateDialog">{{ t('page.links.addButton') }}</VaButton>
       </div>
       <VaInput v-model="search" placeholder="Search links..." class="mb-4 w-full" />
 
@@ -16,16 +16,18 @@
                 <h3 class="text-lg font-semibold">{{ link.title }}</h3>
                 <div class="text-sm text-gray-600">
                   <div>
-                    <strong>Short URL:</strong>
+                    <strong>{{ t('page.links.shortUrl') }}: </strong>
                     <a :href="link.shortUrl" target="_blank" class="text-primary">{{ link.shortUrl }}</a>
                   </div>
-                  <div><strong>Original URL:</strong> {{ link.longUrl }}</div>
+                  <div>
+                    <strong>{{ t('page.links.originUrl') }}: </strong> {{ link.longUrl }}
+                  </div>
                 </div>
                 <div class="flex justify-between items-center text-sm text-gray-500 pt-3 border-t mt-3 gap-4">
                   <div class="flex-1 whitespace-nowrap"><strong>Created:</strong> {{ link.createdAt }}</div>
                   <div class="flex-1 text-right whitespace-nowrap"><strong>Clicks:</strong> {{ link.clickCount }}</div>
                   <div class="flex-1 text-right whitespace-nowrap">
-                    <strong>Tags:</strong>
+                    <strong>{{ t('page.links.tags') }}:</strong>
                     <span v-if="link.tags">
                       {{ link.tags.join(', ') || 'None' }}
                     </span>
@@ -56,6 +58,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { LinkItem } from '@/pages/links/types'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const search = ref('')
 const isCreateDialogOpen = ref(false)
